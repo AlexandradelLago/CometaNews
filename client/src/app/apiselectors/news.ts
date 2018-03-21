@@ -1,9 +1,9 @@
 
  const news:Object ={
     header:[
-      {acronim:"headlines",show:"",logo:''},
-      {acronim:"everything",show:"",logo:''},
-      {acronim:"sources",show:"",logo:''} 
+      {acronim:"top-headlines",show:"Main News",logo:''},
+      {acronim:"everything",show:"Search",logo:''},
+      {acronim:"sources",show:"Favorite Sources",logo:''} 
     ],
     categories:[
    "business",

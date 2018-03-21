@@ -30,7 +30,6 @@ import { routes } from './routes/app.routing'
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { NewProfileComponent } from './new-profile/new-profile.component';
-import { NewsComponent } from './news/news.component';
 
 @NgModule({
   declarations: [
@@ -44,8 +43,7 @@ import { NewsComponent } from './news/news.component';
     NavPrivateComponent,
     FooterComponent,
     FileSelectDirective,
-    NewProfileComponent,
-    NewsComponent
+    NewProfileComponent
   ],
   imports: [
     BrowserModule,

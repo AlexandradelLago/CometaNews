@@ -17,12 +17,44 @@ import $ from 'jquery';
   styleUrls: ['./new-profile.component.css']
 })
 export class NewProfileComponent implements OnInit {
+  checkbox:Array<boolean>=[];
   step:number=1;
   show:boolean=false;
   header:string='';
   quotesCategory:Array<string>= categories;
   zodiacSign: Array<string>=zodiac;
   news:Object=news;
+  sourcesCounter:Number=0;
+  sourcesMax=3;
+  sourcesCheckBOX=[
+    {acronim:"abc-news",checked:false},
+    {acronim:"the-new-york-times",checked:false},
+    {acronim:"the-huffington-post",checked:false},
+    {acronim:"the-washington-post",checked:false},
+    {acronim:"fox-news",checked:false},
+    {acronim:"bbc-news",checked:false},
+    {acronim:"bleacher-report",checked:false},
+    {acronim:"cbs-news",checked:false},
+    {acronim:"daily-mail",checked:false},
+    {acronim:"cnn",checked:false},
+    {acronim:"cnn-es",checked:false},
+    {acronim:"buzzfeed",checked:false},
+    {acronim:"mashable",checked:false},
+    {acronim:"mtv-news",checked:false},
+    {acronim:"vice-news",checked:false},
+    {acronim:"spiegel",checked:false},
+    {acronim:"bbc-sport",checked:false},
+    {acronim:"espn",checked:false},
+    {acronim:"fox-sport",checked:false},
+    {acronim:"marca",checked:false},
+    {acronim:"nfl-news",checked:false},
+    {acronim:"ign",checked:false},
+    {acronim:"techradar",checked:false},
+    {acronim:"business-insider",checked:false},
+    {acronim:"the-wall-street-journal",checked:false},
+    {acronim:"wired",checked:false},
+    {acronim:"bloomberg",checked:false}
+ ];
   uploader:FileUploader = new FileUploader({
     url: `http://localhost:3000/profile`
   });
@@ -54,14 +86,37 @@ export class NewProfileComponent implements OnInit {
     console.log("entro en addNews")
   }
 
+  checkedSources(value){
+    this.sourcesCheckBOX.forEach(s=>{
+
+      if (s.acronim==value){
+        if(s.checked==true){
+          s.checked=false;
+       this.sourcesCounter=+this.sourcesCounter;
+        }else{
+          s.checked=true;
+          this.sourcesCounter=-this.sourcesCounter;
+        }
+        
+        console.log("este es mi checked "+s.checked);
+      }
+    });
+  }
+
+
   submitForm(newForm) {
+    console.log(newForm.value);
     //form es un objeto interno de la instancia FileUploader
     this.uploader.onBuildItemForm = (item, form) => {
       form.append('sign', newForm.value.sign);
      // form.append('birthday', newForm.value.birthday);
       form.append('quote', newForm.value.quote);
       form.append('language', newForm.value.language);
-      form.append('category', newForm.value.category)
+      form.append('category', newForm.value.category);
+      form.append('header', newForm.value.header);
+      form.append('country', newForm.value.country);
+      form.append('sources',newForm.value.sources);
+      console.log(this.sourcesCheckBOX);
 
     };
     // uploaderAll hace la llamada post por mi al back

@@ -10,7 +10,7 @@
         <!-- *ngIf="step===1" -->
       <div  class="input-field col s12" class="collapsible" data-collapsible="accordion">
         <select ngModel name="sign" materialize="material_select" >
-          <option value="" disabled selected>Choose your option</option>
+          <option value="" disabled selected>Zodiac Sign</option>
           <option [value]="zodiacSign[0]">{{zodiacSign[0]}}</option>
           <option [value]="zodiacSign[1]">{{zodiacSign[1]}}</option>
           <option [value]="zodiacSign[2]">{{zodiacSign[2]}}</option>
@@ -33,7 +33,7 @@
       <!-- *ngIf="step===2" -->
         <div  class="input-field col s12" class="collapsible" data-collapsible="accordion">
             <select ngModel name="quote" materialize="material_select" >
-              <option value="" disabled selected>Choose your option</option>
+              <option value="" disabled selected>Quote of the day</option>
               <option [value]="quotesCategory[0]">{{quotesCategory[0]}}</option>
               <option [value]="quotesCategory[1]">{{quotesCategory[1]}}</option>
               <option [value]="quotesCategory[2]">{{quotesCategory[2]}}</option>
@@ -48,47 +48,36 @@
     
           <div  class="input-field col s12" class="collapsible" data-collapsible="accordion">
               <select [(ngModel)]="header" name="header" materialize="material_select" >
-                <option value="" disabled selected>Choose your option</option>
-                <option [value]="news.header[0]">{{news.header[0]}}</option>
-                <option [value]="news.header[1]">{{news.header[1]}}</option>
-                <option [value]="news.header[2]">{{news.header[2]}}</option>
+                <option value="" disabled selected>Which kind of news you want?</option>
+                <option [value]="news.header[0].acronim">{{news.header[0].show}}</option>
+                <option [value]="news.header[1].acronim">{{news.header[1].show}}</option>
+                <option [value]="news.header[2].acronim">{{news.header[2].show}}</option>
                
               </select>
-              <label>What category of news?</label>
+              <label>?</label>
               <!-- <button (click)="nextStep()">Next</button> -->
             </div>
 
 
           <!-- *ngIf="step===3" -->
           <!-- *ngIf="header===headlines" -->
-          <div *ngIf="header == 'headlines'" class="input-field col s12" class="collapsible" data-collapsible="accordion">
-            <select ngModel name="category" materialize="material_select" >
-              <option value="" disabled selected>ha salido</option>
-              <option [value]="news.categories[0]">{{news.categories[0]}}</option>
-              <option [value]="news.categories[1]">{{news.categories[1]}}</option>
-              <option [value]="news.categories[2]">{{news.categories[2]}}</option>
-              <option [value]="news.categories[3]">{{news.categories[3]}}</option>
-              <option [value]="news.categories[4]">{{news.categories[4]}}</option>
-              <option [value]="news.categories[5]">{{news.categories[5]}}</option>
-              <option [value]="news.categories[6]">{{news.categories[6]}}</option>
+          <div *ngIf="header == 'top-headlines'" class="input-field col s12" class="collapsible" data-collapsible="accordion">
+            <select ngModel name="category" materialize="material_select"  >
+              <option value="" disabled selected>Category of news</option> 
+              <option *ngFor='let category of news.categories' [value]="category">{{category}}</option>
             </select>
             <label>What category of news?</label>
             <!-- <button (click)="nextStep()">Next</button> -->
           </div>
-      
+          <!-- *ngIf="header == 'sources'" -->
           
-          <div  *ngIf="header == 'sources'" class="input-field col s12" class="collapsible" data-collapsible="accordion">
-              <select ngModel name="category" materialize="material_select" >
-                <option value="" disabled selected>ha salido</option>
-                <option [value]="news.categories[0]">{{news.categories[0]}}</option>
-                <option [value]="news.categories[1]">{{news.categories[1]}}</option>
-                <option [value]="news.categories[2]">{{news.categories[2]}}</option>
-                <option [value]="news.categories[3]">{{news.categories[3]}}</option>
-                <option [value]="news.categories[4]">{{news.categories[4]}}</option>
-                <option [value]="news.categories[5]">{{news.categories[5]}}</option>
-                <option [value]="news.categories[6]">{{news.categories[6]}}</option>
+          <div  class="input-field col s12" class="collapsible" data-collapsible="accordion">
+              <select ngModel name="country" materialize="material_select" >
+                <option value="" disabled selected>Country</option>
+                <option *ngFor='let country of news.country'  [value]="country.acronim">{{country.country}}</option>
+ 
               </select>
-              <label>What category of news?</label>
+              <label>What country?</label>
               <!-- <button (click)="nextStep()">Next</button> -->
             </div>
         
@@ -96,27 +85,27 @@
           <!-- *ngIf="step===4"  -->
           <div class="input-field col s12" class="collapsible" data-collapsible="accordion">
             <select ngModel name="language" materialize="material_select" >
-              <option value="" disabled selected>Choose your option</option>
-              <option [value]="news.languages[0]">{{news.languages[0]}}</option>
-              <option [value]="news.languages[1]">{{news.languages[1]}}</option>
-              <option [value]="news.languages[2]">{{news.languages[2]}}</option>
-              <option [value]="news.languages[3]">{{news.languages[3]}}</option>
+              <option value="" disabled selected>Language</option>
+              <option *ngFor='let language of news.languages'  [value]="language.acronim">{{language.language}}</option>
             </select>
             <label>Which language?</label>
             <!-- <button (click)="nextStep()">Next</button> -->
           </div>
-    
+
           <div class="input-field col s12" class="collapsible" data-collapsible="accordion">
-              <select ngModel name="country" materialize="material_select" >
-                <option value="" disabled selected>Choose your option</option>
-                <option [value]="news.country[0]">{{news.country[0]}}</option>
-                <option [value]="news.country[1]">{{news.country[1]}}</option>
-                <option [value]="news.country[2]">{{news.country[2]}}</option>
-                <option [value]="news.country[3]">{{news.country[3]}}</option>
+            <p  *ngFor='let source of news.sources'>
+              <input type="checkbox" id={{source.acronim}} (click)="checkedSources(source.acronim)"/>
+              <label for={{source.acronim}}>{{source.acronim}}</label>
+            </p>
+    </div>
+          <!-- <div class="input-field col s12" class="collapsible" data-collapsible="accordion">
+              <select ngModel name="sources" materialize="material_select" >
+                <option value="" disabled selected>Country</option>
+                <option *ngFor='let source of news.sources' [value]="source.acronim">{{source.acronim}}</option>
               </select>
-              <label>Which country?</label>
-              <!-- <button (click)="nextStep()">Next</button> -->
-            </div>
+              <label>Which source?</label>
+          
+            </div> -->
     
               <!-- <p> Birthday
                 <input type="date" name="birthday" [(ngModel)]="birthday" />

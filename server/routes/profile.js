@@ -26,7 +26,11 @@ router.post('/',upload.single("file"), (req,res,next)=>{
        sign  : req.body.sign,
        quote: req.body.quote,
        news:{category:req.body.category,
-       language:req.body.language},
+       language:req.body.language,
+       country:req.body.country,
+       sources:req.body.sources,
+       header:req.body.header
+      },
        profilePic: `/uploads/${req.file.filename}`
      };
   }else{
@@ -35,7 +39,10 @@ router.post('/',upload.single("file"), (req,res,next)=>{
        sign  : req.body.sign,
        quote: req.body.quote,
        news:{category:req.body.category,
-        language:req.body.language},
+        language:req.body.language,
+        country:req.body.country,
+        sources:req.body.sources,
+        header:req.body.header}
      };
      console.log("estoy dentro del if"+updates);
   }

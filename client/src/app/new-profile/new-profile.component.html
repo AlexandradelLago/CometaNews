@@ -5,7 +5,6 @@
 
 <div class="container">
 
-
     <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
         <!-- *ngIf="step===1" -->
       <div  class="input-field col s12" class="collapsible" data-collapsible="accordion">
@@ -26,7 +25,7 @@
         </select>
     
         <label>What is your zodiac sign?</label>
-         <!-- <button (click)="nextStep()" >Next</button> -->
+ 
       </div>
            
     
@@ -43,7 +42,7 @@
               <option [value]="quotesCategory[6]">{{quotesCategory[6]}}</option>
             </select>
             <label>What kind of quote of the day you prefere?</label>
-            <!-- <button (click)="nextStep()">Next</button> -->
+   
           </div>
     
           <div  class="input-field col s12" class="collapsible" data-collapsible="accordion">
@@ -55,11 +54,10 @@
                
               </select>
               <label>?</label>
-              <!-- <button (click)="nextStep()">Next</button> -->
+    
             </div>
 
 
-          <!-- *ngIf="step===3" -->
           <!-- *ngIf="header===headlines" -->
           <div *ngIf="header == 'top-headlines'" class="input-field col s12" class="collapsible" data-collapsible="accordion">
             <select ngModel name="category" materialize="material_select"  >
@@ -67,7 +65,7 @@
               <option *ngFor='let category of news.categories' [value]="category">{{category}}</option>
             </select>
             <label>What category of news?</label>
-            <!-- <button (click)="nextStep()">Next</button> -->
+    
           </div>
           <!-- *ngIf="header == 'sources'" -->
           
@@ -97,33 +95,13 @@
               <input type="checkbox" id={{source.acronim}} (click)="checkedSources(source.acronim)"/>
               <label for={{source.acronim}}>{{source.acronim}}</label>
             </p>
-    </div>
-          <!-- <div class="input-field col s12" class="collapsible" data-collapsible="accordion">
-              <select ngModel name="sources" materialize="material_select" >
-                <option value="" disabled selected>Country</option>
-                <option *ngFor='let source of news.sources' [value]="source.acronim">{{source.acronim}}</option>
-              </select>
-              <label>Which source?</label>
-          
-            </div> -->
-    
-              <!-- <p> Birthday
-                <input type="date" name="birthday" [(ngModel)]="birthday" />
-              </p> -->
-    
-              <!-- *ngIf="step===5" -->
+           </div>
               <div  >
                 <p> Upload your profile picture
     
                   <input type="file" name="file" ng2FileSelect [uploader]="uploader" />      
                 </p>
-      
-                <!-- <button (click)="nextStep()">Next</button> -->
               </div>
-    <!--         
-              <button (click)="addNews()">Add News </button>
-              <app-news *ngIf="show"></app-news> -->
-              <!-- *ngIf="step===6" -->
               <button class="waves-effect waves-light btn" type="submit"> Update Profile </button>
             </form>
     

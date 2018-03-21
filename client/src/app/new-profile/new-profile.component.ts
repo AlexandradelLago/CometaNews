@@ -24,7 +24,7 @@ export class NewProfileComponent implements OnInit {
   quotesCategory:Array<string>= categories;
   zodiacSign: Array<string>=zodiac;
   news:Object=news;
-  sourcesCounter:Number=0;
+  sourcesCounter=0;
   sourcesMax=3;
   sourcesCheckBOX=[
     {acronim:"abc-news",checked:false},
@@ -78,9 +78,7 @@ export class NewProfileComponent implements OnInit {
     this.show=true;
   }
 
-  nextStep(){
-    this.step++;
-  }
+
 
   addNewstoProfile(){
     console.log("entro en addNews")
@@ -88,17 +86,16 @@ export class NewProfileComponent implements OnInit {
 
   checkedSources(value){
     this.sourcesCheckBOX.forEach(s=>{
-
       if (s.acronim==value){
-        if(s.checked==true){
-          s.checked=false;
-       this.sourcesCounter=+this.sourcesCounter;
-        }else{
-          s.checked=true;
-          this.sourcesCounter=-this.sourcesCounter;
-        }
-        
-        console.log("este es mi checked "+s.checked);
+         if(s.checked==true){
+            s.checked=false;
+            this.sourcesCounter--;
+            console.log("entre al click de deschecar algo"+this.sourcesCounter);
+          }else if (s.checked==false&&this.sourcesCounter<this.sourcesMax){
+            s.checked=true;
+            this.sourcesCounter++;
+            console.log("entre al click de checar algo"+this.sourcesCounter);
+          }
       }
     });
   }
@@ -106,6 +103,7 @@ export class NewProfileComponent implements OnInit {
 
   submitForm(newForm) {
     console.log(newForm.value);
+    
     //form es un objeto interno de la instancia FileUploader
     this.uploader.onBuildItemForm = (item, form) => {
       form.append('sign', newForm.value.sign);
@@ -115,8 +113,8 @@ export class NewProfileComponent implements OnInit {
       form.append('category', newForm.value.category);
       form.append('header', newForm.value.header);
       form.append('country', newForm.value.country);
-      form.append('sources',newForm.value.sources);
-      console.log(this.sourcesCheckBOX);
+      form.append('sources',this.sourcesCheckBOX);
+     
 
     };
     // uploaderAll hace la llamada post por mi al back

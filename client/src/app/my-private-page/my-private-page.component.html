@@ -43,7 +43,7 @@
 <div *ngIf= "newsSelector=='search'" class="container">
    <p>News related to {{prueba}}</p>
   <input type="text" [(ngModel)]="prueba">
-  <button ngModel (submit)="searchApi(prueba)">Search</button>
+  <button ngModel (click)="searchApi()">Search</button>
     <div *ngFor='let new of newsSearch.articles' class="col s12 m7">
             <h3 class="header">{{new.title}}</h3>
             <div class="card horizontal">
@@ -87,7 +87,7 @@
     
 
 <div *ngIf= "newsSelector == 'SLC'" class="container">
-     <div *ngFor='let new of newsSourceLC.sources' class="col s12 m7">
+     <div *ngFor='let new of newsSLC.sources' class="col s12 m7">
              <h3 class="header">hola {{new.name}}</h3>
              <div class="card horizontal">
                <div class="card-image">

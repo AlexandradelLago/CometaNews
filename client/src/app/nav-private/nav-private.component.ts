@@ -17,5 +17,10 @@ export class NavPrivateComponent implements OnInit {
     this.sessionS.logout()
     .subscribe(res => this.route.navigate([""]))
   }
+
+  editProfile(){
+    this.sessionS.loggedIn()
+      .subscribe((session)=> this.route.navigate([`profile/${session._id}`]))
+  }
 }
 

@@ -3,6 +3,7 @@ import { SessionService } from "../services/session.service";
 import { ProfileService } from "../services/profile.service";
 import {ApisService} from "../services/apis.service";
 
+
 @Component({
   selector: 'app-my-private-page',
   templateUrl: './my-private-page.component.html',
@@ -18,12 +19,15 @@ export class MyPrivatePageComponent implements OnInit {
   sign:string="virgo";
   category:string="";
   news = {};
-  newsSourceLC= {};
+
   newsHCC= {};
   newsHS= {};
   newsSearch={};
+  newsSLC={};
   sources=[];
   prueba:string='';
+
+
 
   constructor(private session: SessionService, private apiS : ApisService, private profileS: ProfileService) { }
 
@@ -54,18 +58,26 @@ export class MyPrivatePageComponent implements OnInit {
         this.apiS.getHeadlinesCountryCategory(profile.news)
         .subscribe(news =>{
           this.newsHCC=news;
-          console.log("8=======D")
+          console.log("1 8=======D")
           console.log(this.newsHCC);
         });
 
-        // HACER BUSCADOR
+        // // HACER BUSCADOR
+        // //searchApi(prueba){
+        //   this.apiS.searchNew(this.prueba)
+        //   .subscribe(news=>{
+        //     this.newsSearch=news;
+        //     console.log("BUSCADOR")
+        //    // console.log(this.newsSearch);
+        //   });
+        // //}
+        
        
-       
-
-        // HECHP
+        // HECH
         this.apiS.getHeadlinesSources(profile.news)
         .subscribe(news =>{
           this.newsHS=news;
+          console.log("3 8=======D")
           console.log(this.newsHS)
         });
 
@@ -73,9 +85,9 @@ export class MyPrivatePageComponent implements OnInit {
        // sources language country-ME FALTAAA
         this.apiS.getSourcesLanguageCategory(profile.news)
         .subscribe(news =>{
-          this.newsSourceLC=news;
-          console.log("TENGO QUE VER AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-          console.log(this.newsSourceLC)
+          this.newsSLC=news;
+          console.log("4 8=======D")
+          console.log(this.newsSLC)
         });
 
     
@@ -84,30 +96,40 @@ export class MyPrivatePageComponent implements OnInit {
   });
 }
 
-searchApi(prueba){
-  this.apiS.searchNew(prueba)
-  .subscribe(news=>{
-    this.newsSearch=news;
-    console.log(this.newsSearch);
-  })
-}
 
-selectHCC(){
-  console.log(this.profile);
-   this.newsSelector="HCC";
- }
 
- search(){
-  this.newsSelector="search";
-}
+ searchApi(){
+  //  console.log('prueba')
+  //  console.log(this.prueba)
+  //  console.log('NEWSSELECTOR')
+  //  console.log(this.newsSelector);
+  // this.newsSelector="search";
+  console.log(this.prueba)
+   this.apiS.searchNew(this.prueba)
+   .subscribe(news=>{
+     this.newsSearch=news;
+     console.log("BUSCADOR")
+     console.log(this.newsSearch);
+   });
+ };
 
-  selectHS(){
-    this.newsSelector="HS";
+
+  selectHCC(){
+    console.log(this.profile);
+     this.newsSelector="HCC";
+   }
+  
+   search(){
+    this.newsSelector="search";
   }
-
-  selectSLC(){
-    this.newsSelector=="SLC";
-  }
+  
+    selectHS(){
+      this.newsSelector="HS";
+    }
+  
+    selectSLC(){
+      this.newsSelector="SLC";
+    }
 
 
 

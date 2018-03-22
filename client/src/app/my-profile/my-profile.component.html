@@ -1,14 +1,102 @@
 <app-nav-private></app-nav-private>
-<p>
-  my-profile works!
-</p>
 
+<div class="container">
+    <form (ngSubmit)="submitFormNoFile(myFormNoFile)" #myFormNoFile="ngForm">
+      <input type="text" [(ngModel)]="profile.username">
+        <!-- *ngIf="step===1" -->
+      <div  class="input-field col s12" class="collapsible" data-collapsible="accordion">
+        <select ngModel name="sign" materialize="material_select" >
+          <option value="" disabled selected>Zodiac Sign</option>
+          <option [value]="zodiacSign[0]">{{zodiacSign[0]}}</option>
+          <option [value]="zodiacSign[1]">{{zodiacSign[1]}}</option>
+          <option [value]="zodiacSign[2]">{{zodiacSign[2]}}</option>
+          <option [value]="zodiacSign[3]">{{zodiacSign[3]}}</option>
+          <option [value]="zodiacSign[4]">{{zodiacSign[4]}}</option>
+          <option [value]="zodiacSign[5]">{{zodiacSign[5]}}</option>
+          <option [value]="zodiacSign[6]">{{zodiacSign[6]}}</option>
+          <option [value]="zodiacSign[7]">{{zodiacSign[7]}}</option>
+          <option [value]="zodiacSign[8]">{{zodiacSign[8]}}</option>
+          <option [value]="zodiacSign[9]">{{zodiacSign[9]}}</option>
+          <option [value]="zodiacSign[10]">{{zodiacSign[10]}}</option>
+          <option [value]="zodiacSign[11]">{{zodiacSign[11]}}</option>
+        </select>
+        <label>What is your zodiac sign?</label>
+      </div>
+           
+        <div  class="input-field col s12" class="collapsible" data-collapsible="accordion">
+            <select ngModel name="quote" materialize="material_select" >
+              <option value="" disabled selected>Quote of the day</option>
+              <option [value]="quotesCategory[0]">{{quotesCategory[0]}}</option>
+              <option [value]="quotesCategory[1]">{{quotesCategory[1]}}</option>
+              <option [value]="quotesCategory[2]">{{quotesCategory[2]}}</option>
+              <option [value]="quotesCategory[3]">{{quotesCategory[3]}}</option>
+              <option [value]="quotesCategory[4]">{{quotesCategory[4]}}</option>
+              <option [value]="quotesCategory[5]">{{quotesCategory[5]}}</option>
+              <option [value]="quotesCategory[6]">{{quotesCategory[6]}}</option>
+            </select>
+            <label>What kind of quote of the day you prefere?</label>
+          </div>
+          <div  class="input-field col s12" class="collapsible" data-collapsible="accordion">
+              <select [(ngModel)]="header" name="header" materialize="material_select" >
+                <option value="" disabled selected>Which kind of news you want?</option>
+                <option [value]="news.header[0].acronim">{{news.header[0].show}}</option>
+                <option [value]="news.header[1].acronim">{{news.header[1].show}}</option>
+                <option [value]="news.header[2].acronim">{{news.header[2].show}}</option>
+              </select>
+              <label>?</label>
+            </div>
+          <!-- *ngIf="header===headlines" -->
+          <div *ngIf="header == 'top-headlines'" class="input-field col s12" class="collapsible" data-collapsible="accordion">
+            <select ngModel name="category" materialize="material_select"  >
+              <option value="" disabled selected>Category of news</option> 
+              <option *ngFor='let category of news.categories' [value]="category">{{category}}</option>
+            </select>
+            <label>What category of news?</label>
+    
+          </div>
+      
+          
+          <div  class="input-field col s12" class="collapsible" data-collapsible="accordion">
+              <select ngModel name="country" materialize="material_select" >
+                <option value="" disabled selected>Country</option>
+                <option *ngFor='let country of news.country' [value]="country.acronim">{{country.country}}</option>
+              </select>
+              <label>What country?</label>
+              <!-- <button (click)="nextStep()">Next</button> -->
+            </div>
+        
 
+          <!-- *ngIf="step===4"  -->
+          <div class="input-field col s12" class="collapsible" data-collapsible="accordion">
+            <select ngModel name="language" materialize="material_select" >
+              <option value="" disabled selected>Language</option>
+              <option *ngFor='let language of news.languages'  [value]="language.acronim">{{language.language}}</option>
+            </select>
+            <label>Which language?</label>
+            <!-- <button (click)="nextStep()">Next</button> -->
+          </div>
 
+          <div class="input-field col s12" class="collapsible" data-collapsible="accordion">
+            <p  *ngFor='let source of news.sources'>
+              <input type="checkbox" id={{source.acronim}} (click)="checkedSources(source.acronim)"/>
+              <label for={{source.acronim}}>{{source.acronim}}</label>
+            </p>
+           </div>
+              <button class="waves-effect waves-light btn" type="submit"> Save Selections </button>
+            </form>
+         
+    <button (click)="uploadFileBoolean()" class="waves-effect waves-light btn" type="submit"> Upload File </button>
+    <div *ngIf="uploadFile">
+        <input type="file" name="file" ng2FileSelect [uploader]="uploader"/>
+        <button class="btn waves-effect waves-light" (click)="updatePhoto()">Upload foto</button> 
+    </div>
+    <div *ngIf="!uploadFile">
+        <a [routerLink]="['../../private']">Next</a>
+    </div>
+      
 
-
-
-     
+</div>
+ 
 
 
 <app-footer></app-footer>

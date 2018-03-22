@@ -9,7 +9,7 @@ import {SessionService} from '../services/session.service'
 import { FileUploader } from 'ng2-file-upload';
 import { Router } from '@angular/router';
 
-import $ from 'jquery';
+//import $ from 'jquery';
 
 @Component({
   selector: 'app-new-profile',
@@ -65,6 +65,7 @@ export class NewProfileComponent implements OnInit {
 
 
   ngOnInit() {
+  
     this.sessionS.loggedIn()
       .subscribe(user => {
         this.user = user._id;

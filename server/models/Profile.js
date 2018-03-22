@@ -8,7 +8,6 @@ const profileSchema = new Schema({
   profilePic: {type: String, default: 'https://cdn.onlinewebfonts.com/svg/img_264157.png'},
   quote:{type:String , default:'inspire'},
   news:{
-    header:{type:String,default:'top-headlines'},
     language :{type:String, default:'en'},
     category:{type:String,default :'general'},
     sources:{type:Array, default :''},

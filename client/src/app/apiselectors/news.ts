@@ -46,7 +46,7 @@ sources:[
    {acronim:"mashable",language:"en",logo:'',category:"entertainment"},
    {acronim:"mtv-news",language:"en",logo:'',category:"entertainment"},
    {acronim:"vice-news",language:"en",logo:'',category:"entertainment"},
-   {acronim:"spiegel",language:"en",logo:'',category: "general"},
+   {acronim:"spiegel-online",language:"de",logo:'',category: "general"},
    {acronim:"bbc-sport",language:"en",logo:'',category:"sports"},
    {acronim:"espn",language:"en",logo:'',category:"sports"},
    {acronim:"fox-sport",language:"en",logo:'',category:"sports"},

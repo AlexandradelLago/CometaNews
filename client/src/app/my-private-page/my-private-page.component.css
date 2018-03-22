@@ -1,0 +1,28 @@
+.card-actions{
+    color:red;
+}
+
+.btn{
+    background-color:#0d47a1 ;
+}
+
+.card-user{
+    position: relative;
+    /* padding: 0 35em; */
+    /* right: 500px; */
+}
+
+.menu{
+    /* position: relative;
+    left: 300px; */
+}
+
+.todo{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.profile{
+    width:30vw;
+}

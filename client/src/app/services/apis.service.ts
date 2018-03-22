@@ -38,7 +38,8 @@ export class ApisService {
   }
 
   getHeadlinesCountryCategory(news){
-    console.log(`${this.base_URL_news}${news.header}?country=${news.country}&category=${news.category}&apiKey=${this.API_KEY}`);
+    //    LLAMADA A API DE HEADLINES COUNTRY CATEGORY
+    console.log(`${this.base_URL_news}top-headlines?country=${news.country}&category=${news.category}&apiKey=${this.API_KEY}`);
     //https://newsapi.org/v2/top-headlines?country=de&category=business&apiKey=3b4af330ce004204bc4122457cb415a6
     return this.http.get(`${this.base_URL_news}top-headlines?country=${news.country}&category=${news.category}&apiKey=${this.API_KEY}`)
     .map(res => res.json())
@@ -48,29 +49,29 @@ export class ApisService {
 searchNew(word){
   console.log(`${this.base_URL_news}everything?b=${word}&apiKey=${this.API_KEY}`);
   //https://newsapi.org/v2/top-headlines?country=de&category=business&apiKey=3b4af330ce004204bc4122457cb415a6
-  return this.http.get(`${this.base_URL_news}everything?b=${word}&apiKey=${this.API_KEY}`)
+  return this.http.get(`${this.base_URL_news}everything?q=${word}&apiKey=${this.API_KEY}`)
   .map(res => res.json())
   .catch(err=>this.handleError(err))
 }
 
 getHeadlinesSources(news){
   //https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=3b4af330ce004204bc4122457cb415a6
-  console.log("ESTOY EN HEADLINESSOURCE");
+  console.log("LO DEL SWEITCH");
   console.log(news)
   switch (news.sources.length) {
     case 1:
     console.log(`${this.base_URL_news}top-headlines?sources=${news.sources[0]}&apiKey=${this.API_KEY}`)
-    return this.http.get(`${this.base_URL_news}${news.header}?sources=${news.sources[0]}&apiKey=${this.API_KEY}`)
+    return this.http.get(`${this.base_URL_news}top-headlines?sources=${news.sources[0]}&apiKey=${this.API_KEY}`)
     .map(res => res.json())
     .catch(err=>this.handleError(err))
    case 2:
       console.log(`${this.base_URL_news}top-headlines?sources=${news.sources[0]},${news.sources[1]}&apiKey=${this.API_KEY}`)
-      return this.http.get(`${this.base_URL_news}${news.header}?sources=${news.sources[0]},${news.sources[1]}&apiKey=${this.API_KEY}`)
+      return this.http.get(`${this.base_URL_news}top-headlines?sources=${news.sources[0]},${news.sources[1]}&apiKey=${this.API_KEY}`)
       .map(res => res.json())
       .catch(err=>this.handleError(err))
    case 3:
    console.log(`${this.base_URL_news}top-headlines?sources=${news.sources[0]},${news.sources[1]},${news.sources[2]}&apiKey=${this.API_KEY}`)
-   return this.http.get(`${this.base_URL_news}${news.header}?sources=${news.sources[0]},${news.sources[1]},${news.sources[2]}&apiKey=${this.API_KEY}`)
+   return this.http.get(`${this.base_URL_news}top-headlines?sources=${news.sources[0]},${news.sources[1]},${news.sources[2]}&apiKey=${this.API_KEY}`)
       .map(res => res.json())
       .catch(err=>this.handleError(err))
   }
@@ -78,7 +79,7 @@ getHeadlinesSources(news){
 
   getSourcesLanguageCategory(news){
     //https://newsapi.org/v2/sources?language=en&country=us&apiKey=3b4af330ce004204bc4122457cb415a6
-    console.log("CHECKANDO EL LANGUAGE Y CATEGORY")
+    console.log("LLAMANDO A API DE SOURCES LANGUAGE Y CATEGORY")
     console.log(`${this.base_URL_news}sources?language=${news.language}&category=${news.category}&apiKey=${this.API_KEY}`)
     return this.http.get(`${this.base_URL_news}sources?language=${news.language}&category=${news.category}&apiKey=${this.API_KEY}`)
     .map(res => res.json())

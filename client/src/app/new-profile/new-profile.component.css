@@ -1,0 +1,17 @@
+.new-profile{
+    background:#bbdefb ;
+}
+
+.container-new-profile{
+    width:50vw;
+    background:white;
+    
+}
+
+.text-centrado option{
+    text-align: center;
+}
+
+.btn{
+    background-color:#0d47a1 ;
+}

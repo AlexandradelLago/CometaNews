@@ -12,15 +12,18 @@ export class MyPrivatePageComponent implements OnInit {
   username: string = "";
   email: string = "";
   quote: string = "";
+  newsSelector:string="";
   horoscope:string="";
   profile:Object={};
   sign:string="virgo";
   category:string="";
-  news = {
-    articles: [],
-
-  };
-  
+  news = {};
+  newsSourceLC= {};
+  newsHCC= {};
+  newsHS= {};
+  newsSearch={};
+  sources=[];
+  prueba:string='';
 
   constructor(private session: SessionService, private apiS : ApisService, private profileS: ProfileService) { }
 
@@ -34,13 +37,10 @@ export class MyPrivatePageComponent implements OnInit {
         this.profileS.get(user._id)
         .subscribe(profile => {
           this.profile= profile;
-
+          console.log(this.profile);
           this.apiS.getQuote(profile.quote)
           .subscribe(quote =>{
-            console.log("esta es la categoria"+this.category);
-            console.log(quote);
-              this.quote=quote.contents.quotes[0].quote;
-              
+              this.quote=quote.contents.quotes[0].quote;  
           });
 
           this.apiS.getHoroscope(profile.sign)
@@ -48,16 +48,68 @@ export class MyPrivatePageComponent implements OnInit {
             this.horoscope=h.horoscope;
             
           });
-        console.log(profile.news);
-        this.apiS.getNews(profile.news)
+
+
+              // headlines country category-HECHO
+        this.apiS.getHeadlinesCountryCategory(profile.news)
         .subscribe(news =>{
-          this.news=news;
+          this.newsHCC=news;
+          console.log("8=======D")
+          console.log(this.newsHCC);
         });
-  
+
+        // HACER BUSCADOR
+       
+       
+
+        // HECHP
+        this.apiS.getHeadlinesSources(profile.news)
+        .subscribe(news =>{
+          this.newsHS=news;
+          console.log(this.newsHS)
+        });
+
+
+       // sources language country-ME FALTAAA
+        this.apiS.getSourcesLanguageCategory(profile.news)
+        .subscribe(news =>{
+          this.newsSourceLC=news;
+          console.log("TENGO QUE VER AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+          console.log(this.newsSourceLC)
+        });
+
+    
 
       });
   });
 }
+
+searchApi(prueba){
+  this.apiS.searchNew(prueba)
+  .subscribe(news=>{
+    this.newsSearch=news;
+    console.log(this.newsSearch);
+  })
+}
+
+selectHCC(){
+  console.log(this.profile);
+   this.newsSelector="HCC";
+ }
+
+ search(){
+  this.newsSelector="search";
+}
+
+  selectHS(){
+    this.newsSelector="HS";
+  }
+
+  selectSLC(){
+    this.newsSelector=="SLC";
+  }
+
+
 
 }
 

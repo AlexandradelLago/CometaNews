@@ -2,9 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+//toastr
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // upload files
-import { FileSelectDirective } from "ng2-file-upload";
+import { FileUploadModule } from "ng2-file-upload";
 
 // Servicios
 import { SessionService } from "./services/session.service";
@@ -42,7 +45,6 @@ import { NewProfileComponent } from './new-profile/new-profile.component';
     NavHomeComponent,
     NavPrivateComponent,
     FooterComponent,
-    FileSelectDirective,
     NewProfileComponent
   ],
   imports: [
@@ -50,7 +52,10 @@ import { NewProfileComponent } from './new-profile/new-profile.component';
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
-    MaterializeModule
+    MaterializeModule,
+    FileUploadModule,
+    ToastModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [SessionService,ApisService,ProfileService],
   bootstrap: [AppComponent]

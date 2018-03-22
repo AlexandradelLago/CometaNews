@@ -11,9 +11,11 @@ export class AuthSignupComponent implements OnInit {
   constructor(private sessionS : SessionService, private router : Router) { }
 
   ngOnInit() {
+
+
   }
   sendSignupForm(myForm){
     this.sessionS.signup(myForm.value)
-      .subscribe(()=> this.router.navigate(['new-profile']))
+      .subscribe((session)=> this.router.navigate([`profile/${session._id}`]))
   }
 }

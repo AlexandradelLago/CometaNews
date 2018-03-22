@@ -19,8 +19,9 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/materialize-css/dist/css/materialize.css",
         "styles.css",
-       "../node_modules/materialize-css/dist/css/materialize.css"
+       "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css"
      ],
      "scripts": [
        "../node_modules/jquery/dist/jquery.js",

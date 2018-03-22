@@ -16,42 +16,79 @@ router.get('/:id', (req, res, next) => {
 // create a profile esta en user
 
 // update a profiles
-router.post('/',upload.single("file"), (req,res,next)=>{
-  // me hace un update pero quiero que haga patch no put -- preguntar a joss
+
+router.post('/nofiles',(req,res,next)=>{
+ // me hace un update pero quiero que haga patch no put -- preguntar a joss
  let updates;
+ console.log("estoy en no files");
  console.log(req.body);
-  if (req.file != undefined){
+
     updates = {
       // birthday   : req.body.birthday,
-       sign  : req.body.sign,
-       quote: req.body.quote,
-       news:{category:req.body.category,
-       language:req.body.language,
-       country:req.body.country,
-       sources:req.body.sources,
-       header:req.body.header
-      },
-       profilePic: `/uploads/${req.file.filename}`
+       sign  : req.body.values.sign,
+       quote: req.body.values.quote,
+       news:{category:req.body.values.category,
+      language:req.body.values.language,
+      country:req.body.values.country,
+      sources:req.body.sources,
+       header:req.body.values.header}
      };
-  }else{
-    updates = {
-      // birthday   : req.body.birthday,
-       sign  : req.body.sign,
-       quote: req.body.quote,
-       news:{category:req.body.category,
-        language:req.body.language,
-        country:req.body.country,
-        sources:req.body.sources,
-        header:req.body.header}
-     };
-     console.log("estoy dentro del if"+updates);
-  }
-  console.log("estoy fuera y  el updates "+updates)
- console.log(req.user);
-  Profile.findOneAndUpdate({account:req.user._id}, updates, {new:true})
+ 
+  console.log(updates)
+  console.log(req.body.userid);
+  Profile.findOneAndUpdate({account:req.body.userid}, updates, {new:true})
   .then(item=>res.status(200).json(item))
   .catch(e=>res.status(500).send(e));
+
+
 });
+
+router.patch('/:id/addimg', upload.single('file'),  (req,res,next)=>{
+  const update ={
+   profilePic: `/uploads/${req.file.filename}` || req.user.profilePic, 
+ }
+ console.log("entrando a modificar usuario")
+   Profile.findOneAndUpdate({account:req.params.id}, update, {new:true})
+ .then(item=>res.status(200).json(item))
+ .catch(e=>res.status(500).send(e));
+});
+
+// router.patch('/',upload.single("file"), (req,res,next)=>{
+//   // me hace un update pero quiero que haga patch no put -- preguntar a joss
+//  let updates;
+// //  console.log(req.body);
+// //   if (req.file != undefined){
+//     updates = {
+//       // // birthday   : req.body.birthday,
+//       //  sign  : req.body.sign,
+//       //  quote: req.body.quote,
+//       //  news:{category:req.body.category,
+//       //  language:req.body.language,
+//       //  country:req.body.country,
+//       //  sources:req.body.sources,
+//       //  header:req.body.header
+//       // },
+//        profilePic: `/uploads/${req.file.filename}`
+//      };
+//   // }else{
+//   //   updates = {
+//   //     // birthday   : req.body.birthday,
+//   //      sign  : req.body.sign,
+//   //      quote: req.body.quote,
+//   //      news:{category:req.body.category,
+//   //       language:req.body.language,
+//   //       country:req.body.country,
+//   //       sources:req.body.sources,
+//   //       header:req.body.header}
+//   //    };
+//   //    console.log("estoy dentro del if"+updates);
+//   // }
+//   console.log("estoy en file")
+//  console.log(req.user);
+//   Profile.findOneAndUpdate({account:req.user._id}, updates, {new:true})
+//   .then(item=>res.status(200).json(item))
+//   .catch(e=>res.status(500).send(e));
+// });
 
 
 

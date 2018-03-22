@@ -18,6 +18,7 @@ import $ from 'jquery';
 })
 export class NewProfileComponent implements OnInit {
   checkbox:Array<boolean>=[];
+  uploadFile:boolean=false;
   step:number=1;
   show:boolean=false;
   header:string='';
@@ -26,6 +27,7 @@ export class NewProfileComponent implements OnInit {
   news:Object=news;
   sourcesCounter=0;
   sourcesMax=3;
+  selectedSources=[];
   sourcesCheckBOX=[
     {acronim:"abc-news",checked:false},
     {acronim:"the-new-york-times",checked:false},
@@ -55,25 +57,22 @@ export class NewProfileComponent implements OnInit {
     {acronim:"wired",checked:false},
     {acronim:"bloomberg",checked:false}
  ];
-  uploader:FileUploader = new FileUploader({
-    url: `http://localhost:3000/profile`
-  });
+ uploader= new FileUploader({
+    
+});
   user: any;
   constructor( private sessionS: SessionService,private profileS:ProfileService, private route:Router) { }
 
-  ngOnInit() {
 
-   // $('select').material_select();
- // tengo que hacer llamada al loggedin servicio y sacar el req.user 
-  this.sessionS.loggedIn()
-    .subscribe(result => {
-      console.log(result);
-      this.user=result._id;
-      console.log(this.user);
-    })
-  console.log(this.news);
+  ngOnInit() {
+    this.sessionS.loggedIn()
+      .subscribe(user => {
+        this.user = user._id;
+        this.uploader.options.url = `http://localhost:3000/profile/${this.user}/addimg`;
+      });
   }
- 
+
+
   addNews(){
     this.show=true;
   }
@@ -100,25 +99,25 @@ export class NewProfileComponent implements OnInit {
     });
   }
 
-
-  submitForm(newForm) {
-    console.log(newForm.value);
-    
-    //form es un objeto interno de la instancia FileUploader
-    this.uploader.onBuildItemForm = (item, form) => {
-      form.append('sign', newForm.value.sign);
-     // form.append('birthday', newForm.value.birthday);
-      form.append('quote', newForm.value.quote);
-      form.append('language', newForm.value.language);
-      form.append('category', newForm.value.category);
-      form.append('header', newForm.value.header);
-      form.append('country', newForm.value.country);
-      form.append('sources',this.sourcesCheckBOX);
-     
-
-    };
-    // uploaderAll hace la llamada post por mi al back
-    this.uploader.uploadAll();
-    this.uploader.onCompleteItem = () => this.route.navigate(['private']);
+  submitFormNoFile(newFormNoFile){
+    console.log(newFormNoFile.value);
+    this.sourcesCheckBOX.forEach(e=>{
+      if(e.checked){
+        this.selectedSources.push(e.acronim);
+      }
+    })
+    this.profileS.newProfileNoPic(newFormNoFile.value,this.selectedSources,this.user)
+    .subscribe(res=>console.log("ESTOY AQUI"))
   }
+
+uploadFileBoolean(){
+  this.uploadFile=true;
+}
+updatePhoto(){
+  this.uploader.queue[0].method="PATCH"
+    console.log("voy a subir archivo")
+    //form es un objeto interno de la instancia FileUploader
+  this.uploader.uploadAll();
+  this.uploader.onCompleteItem = () => this.route.navigate(['private']);
+}
 }

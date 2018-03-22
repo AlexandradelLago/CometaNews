@@ -31,7 +31,7 @@ authController.post("/signup", (req, res, next) => {
     console.log(newUser);
 
 //Nueva forma de guardar el user , con Promesas
-
+    console.log("llego a guardar")
     newUser.save()
       .then(user => {
         //req.user=user

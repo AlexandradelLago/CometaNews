@@ -5,13 +5,14 @@ const profileSchema = new Schema({
  // birthday:{type:Date},
   sign: {type:String},
   account:{type:Schema.Types.ObjectId, ref:"user"},
-  profilePic: {type: String, default: ''},
-  quote:{type:String , default:''},
+  profilePic: {type: String, default: 'https://cdn.onlinewebfonts.com/svg/img_264157.png'},
+  quote:{type:String , default:'inspire'},
   news:{
-    language :{type:String, default:''},
-    category:{type:String,default :''},
+    header:{type:String,default:'top-headlines'},
+    language :{type:String, default:'en'},
+    category:{type:String,default :'general'},
     sources:{type:Array, default :''},
-    country:{type:Array,default:''}
+    country:{type:Array,default:'us'}
   }
 });
 

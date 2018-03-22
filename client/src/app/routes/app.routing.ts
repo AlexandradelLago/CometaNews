@@ -17,7 +17,7 @@ export const routes:Routes = [
     {path:"signup" , component:AuthSignupComponent},
     {path:"private", component:MyPrivatePageComponent},
     {path:"profile", component:MyProfileComponent},
-    {path:"new-profile", component:NewProfileComponent},
+    {path:"profile/:id", component:NewProfileComponent},
 
 ]
 

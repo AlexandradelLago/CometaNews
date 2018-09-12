@@ -8,6 +8,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./auth-signup.component.css']
 })
 export class AuthSignupComponent implements OnInit {
+  email;username;password;
   constructor(private sessionS : SessionService, private router : Router) { }
 
   ngOnInit() {

@@ -18,6 +18,7 @@ export class MyProfileComponent implements OnInit {
     
   });
 user:any;
+quotesCategory:any=[];
   constructor( private sessionS: SessionService,private profileS:ProfileService, private route:Router) { }
 
   ngOnInit() {

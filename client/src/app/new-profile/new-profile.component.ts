@@ -73,12 +73,18 @@ export class NewProfileComponent implements OnInit {
       });
   }
 
+toPrivate(){
+ this.sessionS.loggedIn()
+  .subscribe(user=>{
+    this.route.navigate(['private'])
+  })
+
+
+}
 
   addNews(){
     this.show=true;
   }
-
-
 
   addNewstoProfile(){
     console.log("entro en addNews")

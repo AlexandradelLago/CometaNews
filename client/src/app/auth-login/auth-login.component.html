@@ -1,38 +1,28 @@
-<app-nav-home></app-nav-home> 
-<section class="container height">
+<app-nav-home></app-nav-home>
 
-    <div class="row login">
-        <form class="col s9 ">
-          <div class="row">
-              <div class="input-field col s9">
-                  <label for="username"> Username </label>
-                  <input type="text" [(ngModel)]="formInfo.username" name="username" class="validate"/>
-            
-                </div>
-      
+<main>
+  <div class="login">
+    <h1 class="blue-text text-accent-4"> Please, enter your credentials!</h1>
+    <div class="container row">
+      <form class="col s9 ">
+        <div class="row">
+          <div class="input-field col s9">
+            <label for="username"> Username </label>
+            <input type="text" [(ngModel)]="formInfo.username" name="username" class="validate" />
           </div>
-        
-      
-          <div class="row">
-      
-              <div class="input-field col s9">
-                  <label for="password" data-error="wrong" data-success="right"> Password </label>
-                  <input type="password" [(ngModel)]="formInfo.password" name="password" class="validate" />
-            
-                </div>
-      
-            </div>
-      
-      
-        
-          <button class="waves-effect waves-light btn orange lighten-2" (click)="sendForm()"> login </button>
-        </form>
-      </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s9">
+            <label for="password" data-error="wrong" data-success="right"> Password </label>
+            <input type="password" [(ngModel)]="formInfo.password" name="password" class="validate" />
+          </div>
+        </div>
+        <button class="waves-effect waves-light btn orange lighten-2" (click)="sendForm()"> login </button>
+      </form>
+    </div>
+  </div>
+</main>
 
+<p class="error"> {{ error }} </p>
 
-</section>
-
-
-  <p class="error"> {{ error }} </p>
-
-  <app-footer></app-footer>
+<app-footer></app-footer>

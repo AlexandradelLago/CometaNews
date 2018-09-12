@@ -1,70 +1,42 @@
 <app-nav-private></app-nav-private>
-<div class="card-panel grey lighten-3">
 
+<header>
+  <div class="card row blue lighten-5">
+    <div class="card-image col s3">
         <img  class="circle" [src]="'http://localhost:3000/' + profile.profilePic" alt="">
-        <blockquote> {{quote}}</blockquote>
-        <p>Your zodiac sign is {{profile.sign}}</p>
-        <p>{{horoscope}}</p>
-        
-        <h3>Hola {{username}}</h3>
-        <h4>Your email</h4>
-        <p>{{email}}</p>
-        
-
-
-</div>
-
-<button class="btn waves-effect waves-light"(click)="selectHCC()">By country and category</button>
-<button class="btn waves-effect waves-light"(click)="search()">Search news by word</button>
-<button class="btn waves-effect waves-light"(click)="selectHS()">Breaking news of your favourite sources</button>
-<button class="btn waves-effect waves-light"(click)="selectSLC()">Sources by category</button>
-
-<div *ngIf= "newsSelector=='HCC'" class="container">
-        <div *ngFor='let new of newsHCC.articles' class="col s12 m7">
-                <h3 class="header">{{new.title}}</h3>
-                <h4>By {{new.source.name}}</h4>
-                <div class="card horizontal">
-                  <div class="card-image">
-                    <img [src]="new.urlToImage" >
-                  </div>
-                  <div class="card-stacked">
-                    <div class="card-content">
-                      <p>{{new.description}}</p>
-                    </div>
-                    <div class="card-action">
-                        <p></p>
-                           
-                    </div>
-                  </div>
-                </div>
-        </div>
-</div>
-
-<div *ngIf= "newsSelector=='search'" class="container">
-   <p>News related to {{prueba}}</p>
-  <input type="text" [(ngModel)]="prueba">
-  <button ngModel (click)="searchApi()">Search</button>
-    <div *ngFor='let new of newsSearch.articles' class="col s12 m7">
-            <h3 class="header">{{new.title}}</h3>
-            <div class="card horizontal">
-              <div class="card-image">
-                <img [src]="new.urlToImage" >
-              </div>
-              <div class="card-stacked">
-                <div class="card-content">
-                  <p>{{new.description}}</p>
-                </div>
-                <div class="card-action">
-                    <p></p>
-                       
-                </div>
-              </div>
-            </div>
     </div>
-</div>
+<div class="card-content col s9">
+    <h3>Hi there, {{username}}</h3>
+    <blockquote> {{quote}}</blockquote>
+    <p>Your zodiac sign is {{profile.sign}} and the horoscope for today says:</p>
+   <blockquote>
+      {{horoscope}}
+   </blockquote>
 
-<div *ngIf= "newsSelector == 'HS'" class="container">
-    <div *ngFor='let new of newsHS.articles' class="col s12 m7">
+    {{profile.news.language}}
+    {{profile.news.country}}
+    {{profile.news.sources}}
+    {{profile.news.category}}
+</div>
+</div>
+    <div class="col buttons">
+        <button class="btn waves-effect orange darken-1 waves-light"(click)="selectHCC()"> By category</button>
+        <button class="btn waves-effect orange darken-2 waves-light"(click)="search()"> Search news</button>
+        <button class="btn waves-effect orange darken-3 waves-light"(click)="selectHS()"> By source </button>
+        <!-- <button class="btn waves-effect orange darken-4 waves-light"(click)="selectSLC()">By ??</button> -->
+
+    </div>
+
+
+
+</header>
+
+<main>
+
+    
+  <div   class="container orange darken-1" id="HCC">
+    <h2 class="white-text">News of <span><i>{{profile.news.category}}</i> </span>from {{profile.news.country}} </h2>
+    <div *ngFor='let new of newsHCC.articles' class="col s12 m7">
             <h3 class="header">{{new.title}}</h3>
             <h4>By {{new.source.name}}</h4>
             <div class="card horizontal">
@@ -76,40 +48,95 @@
                   <p>{{new.description}}</p>
                 </div>
                 <div class="card-action">
-                 
-                    <a [href]="new.url"></a>
+                    <a [href]="new.url"> See more </a>
                        
                 </div>
               </div>
             </div>
     </div>
 </div>
-    
 
-<div *ngIf= "newsSelector == 'SLC'" class="container">
-     <div *ngFor='let new of newsSLC.sources' class="col s12 m7">
-             <h3 class="header">hola {{new.name}}</h3>
-             <div class="card horizontal">
-               <div class="card-image">
+<div   class="container orange darken-2" id="searchWord">
+<p>News related to {{prueba}}</p>
+<input type="text" [(ngModel)]="prueba">
+<button ngModel (click)="searchApi()">Search</button>
+<div *ngFor='let new of newsSearch.articles' class="col s12 m7">
+        <h3 class="header">{{new.title}}</h3>
+        <h4>By {{new.source.name}}</h4>
+        <div class="card horizontal">
+          <div class="card-image">
+            <img [src]="new.urlToImage" >
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <p>{{new.description}}</p>
+            </div>
+            <div class="card-action">
+                <a [href]="new.url"> See more </a>
+                   
+            </div>
+          </div>
+        </div>
+</div>
+</div>
+
+<div   class="container orange darken-3"  id="HS">
+    <h2>Headlines sources {{profile.news.sources}}</h2>
+<div *ngFor='let new of newsHS.articles' class="col s12 m7">
+        <h3 class="header">{{new.title}}</h3>
+        <h4>By {{new.source.name}}</h4>
+        <div class="card horizontal">
+          <div class="card-image">
+            <img [src]="new.urlToImage" >
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <p>{{new.description}}</p>
+            </div>
+            <div class="card-action">
              
-               </div>
-               <div class="card-stacked">
-                 <div class="card-content">
-                   <p>{{new.description}}</p>
-                 </div>
-                 <div class="card-action">
-                  
-                        
-                 </div>
-               </div>
+                <a [href]="new.url"> See more </a>
+             
+                   
+            </div>
+          </div>
+        </div>
+</div>
+</div>
+
+
+
+<div   class="container orange darken-1" id="SLC">
+    <h2>News by language and category</h2>
+ <div *ngFor='let new of newsSLC.sources' class="col s12 m7">
+         <h3 class="header">{{new.name}}</h3>
+         <h4>By {{new.source.name}}</h4>
+         <div class="card horizontal">
+           <div class="card-image">
+              <img [src]="new.urlToImage" >
+           </div>
+           <div class="card-stacked">
+             <div class="card-content">
+               <p>{{new.description}}</p>
              </div>
-     </div>
+             <div class="card-action">
+              
+                <a [href]="new.url"> See more </a>
+             </div>
+           </div>
+         </div>
  </div>
+</div>
 
 
 
-        
+    
 
 
 <span style="z-index:50;font-size:0.9em;"><img src="https://theysaidso.com/branding/theysaidso.png" height="20" width="20" alt="theysaidso.com"/><a href="https://theysaidso.com" title="Powered by quotes from theysaidso.com" style="color: #9fcc25; margin-left: 4px; vertical-align: middle;">theysaidso.com</a></span>
+
+
+
+</main>
+
 <app-footer></app-footer>

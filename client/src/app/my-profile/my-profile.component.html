@@ -1,9 +1,9 @@
 <app-nav-private></app-nav-private>
 
-<div class="container">
+<!-- <div class="container">
     <form (ngSubmit)="submitFormNoFile(myFormNoFile)" #myFormNoFile="ngForm">
       <input type="text" [(ngModel)]="profile.username">
-        <!-- *ngIf="step===1" -->
+     
       <div  class="input-field col s12" class="collapsible" data-collapsible="accordion">
         <select ngModel name="sign" materialize="material_select" >
           <option value="" disabled selected>Zodiac Sign</option>
@@ -45,7 +45,7 @@
               </select>
               <label>?</label>
             </div>
-          <!-- *ngIf="header===headlines" -->
+      
           <div *ngIf="header == 'top-headlines'" class="input-field col s12" class="collapsible" data-collapsible="accordion">
             <select ngModel name="category" materialize="material_select"  >
               <option value="" disabled selected>Category of news</option> 
@@ -63,10 +63,10 @@
               </select>
               <label>What country?</label>
               <!-- <button (click)="nextStep()">Next</button> -->
-            </div>
+            <!-- </div>
         
 
-          <!-- *ngIf="step===4"  -->
+       
           <div class="input-field col s12" class="collapsible" data-collapsible="accordion">
             <select ngModel name="language" materialize="material_select" >
               <option value="" disabled selected>Language</option>
@@ -74,7 +74,7 @@
             </select>
             <label>Which language?</label>
             <!-- <button (click)="nextStep()">Next</button> -->
-          </div>
+          <!-- </div>
 
           <div class="input-field col s12" class="collapsible" data-collapsible="accordion">
             <p  *ngFor='let source of news.sources'>
@@ -92,10 +92,10 @@
     </div>
     <div *ngIf="!uploadFile">
         <a [routerLink]="['../../private']">Next</a>
-    </div>
+    </div> --> -->
       
 
-</div>
+<!-- </div> --> -->
  
 
 

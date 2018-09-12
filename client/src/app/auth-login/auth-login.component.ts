@@ -9,11 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth-login.component.css']
 })
 export class AuthLoginComponent implements OnInit {
+  
   formInfo = {
     username: '',
     password: ''
   };
-
+  
+error:any=[];
   constructor( private sessionS : SessionService, private route: Router) { 
      
     }

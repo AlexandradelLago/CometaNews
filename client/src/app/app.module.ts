@@ -33,7 +33,7 @@ import { routes } from './routes/app.routing'
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { NewProfileComponent } from './new-profile/new-profile.component';
-import { PanelcardComponent } from './panelcard/panelcard.component';
+
 
 @NgModule({
   declarations: [
@@ -46,8 +46,7 @@ import { PanelcardComponent } from './panelcard/panelcard.component';
     NavHomeComponent,
     NavPrivateComponent,
     FooterComponent,
-    NewProfileComponent,
-    PanelcardComponent
+    NewProfileComponent
   ],
   imports: [
     BrowserModule,

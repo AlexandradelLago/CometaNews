@@ -2,3 +2,7 @@
 * {
   font-family: Arial, sans-serif;
 }
+
+main{
+  min-height: 90vh;
+}

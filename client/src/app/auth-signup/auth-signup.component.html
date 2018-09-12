@@ -1,41 +1,33 @@
-<app-nav-home></app-nav-home> 
+<app-nav-home></app-nav-home>
 
-
-<div class="row container height ">
-    <form class=" col s12" (ngSubmit)="sendSignupForm(myForm)" #myForm="ngForm">
-
-      <div class="signup">
-
-          <div class="row">
-              <div class="input-field col s10">
-                  <input type="text" [(ngModel)]="username" name="username" class="validate" required/>
-                <label for="username">Username</label>
-              </div>
-              </div>
-            <div class="row">
-              <div class="input-field col s10">
-                  <input  class="validate" id="password"  type="password" [(ngModel)]="password" name="password" rminlength="6" required/>
-                <label for="password"  data-error="wrong" data-success="right">Password</label>
-              </div>
-            </div>
-            <div class="row">
-          
-                <div class="input-field col s10">
-                  <input id="email"  type="email" [(ngModel)]="email" name="email" required class="validate">
-                  <label for="email" data-error="wrong" data-success="right">Email</label>
-                </div>
-             
-            </div>
-            <button class="waves-effect waves-light btn orange lighten-2" type="submit"> Signup </button>
-
-
-
-      </div>
-    
-    </form>
+<main>
+  <div class="login">
+    <h1 class="blue-text text-accent-4"> Kindly register to start enjoying!</h1>
+    <div class="row container">
+      <form class=" col s9" (ngSubmit)="sendSignupForm(myForm)" #myForm="ngForm">
+        <div class="row">
+          <div class="input-field col s9">
+            <input type="text" [(ngModel)]="username" name="username" class="validate" required />
+            <label for="username">Username</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s9">
+            <input class="validate" id="password" type="password" [(ngModel)]="password" name="password" rminlength="6"
+              required />
+            <label for="password" data-error="wrong" data-success="right">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s10">
+            <input id="email" type="email" [(ngModel)]="email" name="email" required class="validate">
+            <label for="email" data-error="wrong" data-success="right">Email</label>
+          </div>
+        </div>
+        <button class="waves-effect waves-light btn orange lighten-2" type="submit"> Signup </button>
+      </form>
+    </div>
   </div>
+</main>
 
-  <app-footer></app-footer>
-        
-
-
+<app-footer></app-footer>

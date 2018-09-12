@@ -68,8 +68,8 @@
                 <!-- <button (click)="nextStep()">Next</button> -->
               </div>
     
-              <div class="input-field col s12" class="collapsible" data-collapsible="accordion">
-                <p  *ngFor='let source of news.sources'>
+              <div class="input-field sources s12" class="collapsible" data-collapsible="accordion">
+                <p class="sourceitem" *ngFor='let source of news.sources'>
                   <input type="checkbox" id={{source.acronim}} (click)="checkedSources(source.acronim)"/>
                   <label for={{source.acronim}}>{{source.acronim}}</label>
                 </p>
@@ -82,6 +82,7 @@
             <input type="file" name="file" ng2FileSelect [uploader]="uploader"/>
             <button class="btn waves-effect waves-light" (click)="updatePhoto()"><i class="material-icons left">check</i>Upload foto</button> 
         </div>
+        
         <div *ngIf="!uploadFile">
             <a [routerLink]="['../../private']">Next</a>
         </div>

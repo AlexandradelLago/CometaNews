@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SessionService } from "../services/session.service";
 import { ProfileService } from "../services/profile.service";
 import {ApisService} from "../services/apis.service";
-
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-my-private-page',
@@ -10,25 +10,22 @@ import {ApisService} from "../services/apis.service";
   styleUrls: ['./my-private-page.component.css']
 })
 export class MyPrivatePageComponent implements OnInit {
+  profile:Object={news:{category:"",sources:[],country:"",language:""},sign:"",quote:""}
   username: string = "";
   email: string = "";
   quote: string = "";
   newsSelector:string="";
   horoscope:string="";
-  profile:Object={};
+  new:any={title:"",source:{name:""},description:""};
   sign:string="virgo";
   category:string="";
   news = {};
-
   newsHCC= {};
   newsHS= {};
   newsSearch={};
   newsSLC={};
   sources=[];
   prueba:string='';
-
-
-
   constructor(private session: SessionService, private apiS : ApisService, private profileS: ProfileService) { }
 
   ngOnInit() {
@@ -41,7 +38,6 @@ export class MyPrivatePageComponent implements OnInit {
         this.profileS.get(user._id)
         .subscribe(profile => {
           this.profile= profile;
-          console.log(this.profile);
           this.apiS.getQuote(profile.quote)
           .subscribe(quote =>{
               this.quote=quote.contents.quotes[0].quote;  
@@ -53,8 +49,7 @@ export class MyPrivatePageComponent implements OnInit {
             
           });
 
-
-              // headlines country category-HECHO
+// get HCC
         this.apiS.getHeadlinesCountryCategory(profile.news)
         .subscribe(news =>{
           this.newsHCC=news;
@@ -62,18 +57,7 @@ export class MyPrivatePageComponent implements OnInit {
           console.log(this.newsHCC);
         });
 
-        // // HACER BUSCADOR
-        // //searchApi(prueba){
-        //   this.apiS.searchNew(this.prueba)
-        //   .subscribe(news=>{
-        //     this.newsSearch=news;
-        //     console.log("BUSCADOR")
-        //    // console.log(this.newsSearch);
-        //   });
-        // //}
-        
-       
-        // HECH
+        // get HS
         this.apiS.getHeadlinesSources(profile.news)
         .subscribe(news =>{
           this.newsHS=news;
@@ -81,16 +65,13 @@ export class MyPrivatePageComponent implements OnInit {
           console.log(this.newsHS)
         });
 
-
-       // sources language country-ME FALTAAA
+       // get SLC
         this.apiS.getSourcesLanguageCategory(profile.news)
         .subscribe(news =>{
           this.newsSLC=news;
           console.log("4 8=======D")
           console.log(this.newsSLC)
         });
-
-    
 
       });
   });
@@ -99,36 +80,57 @@ export class MyPrivatePageComponent implements OnInit {
 
 
  searchApi(){
-  //  console.log('prueba')
-  //  console.log(this.prueba)
-  //  console.log('NEWSSELECTOR')
-  //  console.log(this.newsSelector);
-  // this.newsSelector="search";
-  console.log(this.prueba)
    this.apiS.searchNew(this.prueba)
    .subscribe(news=>{
      this.newsSearch=news;
-     console.log("BUSCADOR")
-     console.log(this.newsSearch);
    });
  };
 
 
   selectHCC(){
-    console.log(this.profile);
-     this.newsSelector="HCC";
+ 
+    if ( $('#HCC').css("display")=="block"){
+      $('#HCC').css("display","none");
+    }else{
+      $('#HCC').css("display","block");
+      $('#HS').css("display","none");
+      $('#searchWord').css("display","none");
+      $('#SLC').css("display","none");
+    }
    }
   
    search(){
-    this.newsSelector="search";
+    if ( $('#searchWord').css("display")=="block"){
+      $('#searchWord').css("display","none");
+    }else{
+      $('#searchWord').css("display","block");
+      $('#HS').css("display","none");
+      $('#SLC').css("display","none");
+      $('#HCC').css("display","none");
+    }
   }
   
     selectHS(){
-      this.newsSelector="HS";
+      if ( $('#HS').css("display")=="block"){
+        $('#HS').css("display","none");
+      }else{
+        $('#HS').css("display","block");
+        $('#SLC').css("display","none");
+        $('#searchWord').css("display","none");
+        $('#HCC').css("display","none");
+      }
     }
   
     selectSLC(){
-      this.newsSelector="SLC";
+   
+      if ( $('#SLC').css("display")=="block"){
+        $('#SLC').css("display","none");
+      }else{
+        $('#SLC').css("display","block");
+        $('#HS').css("display","none");
+        $('#searchWord').css("display","none");
+        $('#HCC').css("display","none");
+      }
     }
 
 

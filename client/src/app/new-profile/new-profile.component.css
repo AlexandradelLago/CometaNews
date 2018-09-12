@@ -15,3 +15,13 @@
 .btn{
     background-color:#0d47a1 ;
 }
+
+.sources{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+}
+
+.sourceitem{
+    width:40%;
+}

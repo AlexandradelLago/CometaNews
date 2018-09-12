@@ -1,11 +1,11 @@
 
-<nav>
-  <div class="nav-wrapper blue">
+<nav class="blue accent-4">
+  <div class="nav-wrapper blue accent-4">
     <img src="../assets/images/comet.png" alt="logo">
     <a href="" class="brand-logo"> CometNews</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a [href]="['signup']">Signup</a></li>
-      <li> <a [href]="['login']">Login</a></li>
+      <li><a [routerLink]="['/signup']">Signup</a></li>
+      <li> <a [routerLink]="['/login']">Login</a></li>
       <li class="active"> <a [href]="['']">Home </a></li>
     </ul>
   </div>

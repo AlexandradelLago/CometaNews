@@ -1,9 +1,18 @@
 .card-actions{
     color:red;
 }
-
+#SLC, #HS,#HCC,#searchWord{
+    display: none;
+}
 .btn{
     background-color:#0d47a1 ;
+}
+
+.datos {
+    margin:5px;
+    margin-bottom:20px;
+    box-sizing: border-box;
+    width: 30%;
 }
 
 .card-user{
@@ -12,10 +21,10 @@
     /* right: 500px; */
 }
 
-.menu{
-    /* position: relative;
-    left: 300px; */
-}
+/* .menu{
+    position: relative;
+    left: 300px; 
+} */
 
 .todo{
     display:flex;

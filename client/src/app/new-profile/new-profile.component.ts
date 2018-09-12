@@ -18,13 +18,19 @@ import { Router } from '@angular/router';
 })
 export class NewProfileComponent implements OnInit {
   checkbox:Array<boolean>=[];
+  
+  news=news;
+
+ 
+  languages:any=[];
+  sources:any=[]
   uploadFile:boolean=false;
   step:number=1;
   show:boolean=false;
   header:string='';
   quotesCategory:Array<string>= categories;
   zodiacSign: Array<string>=zodiac;
-  news:Object=news;
+  
   sourcesCounter=0;
   sourcesMax=3;
   selectedSources=[];

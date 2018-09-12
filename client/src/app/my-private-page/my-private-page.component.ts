@@ -10,7 +10,7 @@ import * as $ from 'jquery';
   styleUrls: ['./my-private-page.component.css']
 })
 export class MyPrivatePageComponent implements OnInit {
-  profile:Object={news:{category:"",sources:[],country:"",language:""},sign:"",quote:""}
+  profile:Object={news:{category:"",sources:[],country:"",language:""},sign:"",quote:""};
   username: string = "";
   email: string = "";
   quote: string = "";
@@ -19,11 +19,11 @@ export class MyPrivatePageComponent implements OnInit {
   new:any={title:"",source:{name:""},description:""};
   sign:string="virgo";
   category:string="";
-  news = {};
-  newsHCC= {};
-  newsHS= {};
-  newsSearch={};
-  newsSLC={};
+  news:Object = {articles:"",sources:""};
+  newsHCC:Object= {articles:"",sources:""};
+  newsHS:Object= {articles:"",sources:""};
+  newsSearch:Object={articles:"",sources:""};
+  newsSLC:Object={articles:"",sources:""};
   sources=[];
   prueba:string='';
   constructor(private session: SessionService, private apiS : ApisService, private profileS: ProfileService) { }

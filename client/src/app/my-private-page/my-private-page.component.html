@@ -1,5 +1,4 @@
 <app-nav-private></app-nav-private>
-
 <header>
   <div class="card row blue lighten-5">
     <div class="card-image col s3">
@@ -35,7 +34,7 @@
 
     
   <div   class="container orange darken-1" id="HCC">
-    <h2 class="white-text">News of <span><i>{{profile.news.category}}</i> </span>from {{profile.news.country}} </h2>
+    <h2 class="white-text">News of <span><i *ngIf="profile">{{profile.news.category}}</i> </span>from {{profile.news.country}} </h2>
     <div *ngFor='let new of newsHCC.articles' class="col s12 m7">
             <h3 class="header">{{new.title}}</h3>
             <h4>By {{new.source.name}}</h4>
